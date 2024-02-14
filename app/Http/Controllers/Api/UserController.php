@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::with('certificates')->get();
         return response()->json(UserResource::collection($users));
 
     }
@@ -25,12 +25,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user= User::create([
+        $validatePassword = $request->validate([
+            "password"=> "required|string|confirmed",
+        ]);
+
+        $user= User::create([ 
             "name" => $request->name,     
             "cpf" => $request->cpf,
             "registration" => $request->registration,
             "email" => $request->email,
-            "password" => Hash::make($request->password),
+            "password" => Hash::make($validatePassword['password']),
             
         ]);
 
@@ -58,7 +62,12 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        $user->update($request->all());
+        $user->update([
+            "name" => $request->name,     
+            "cpf" => $request->cpf,
+            "registration" => $request->registration,
+            "email" => $request->email,
+        ]);
 
         return response()->json(
             new UserResource($user)

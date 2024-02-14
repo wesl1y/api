@@ -23,7 +23,6 @@ class User extends Authenticatable
         'cpf',
         'password',
         'registration',
-        'server_id',
         
     ];
 
@@ -47,7 +46,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function certificatesUser(){
+    public function certificates(){
         return $this->hasMany(Certificate::class);
     }
 

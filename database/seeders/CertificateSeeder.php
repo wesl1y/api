@@ -14,9 +14,9 @@ class CertificateSeeder extends Seeder
     public function run(): void
     {
         Certificate::create([
-            "process" => "123456",
+            "process" => "14552095414",
             "status" => "deferido",
-            "start" => "2024-02-13",
+            "start" => "2024-02-10",
             "end" => "2024-02-15",
             "user_id" => 1,
             "server_id" => 1

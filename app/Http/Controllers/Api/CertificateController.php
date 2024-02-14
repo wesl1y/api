@@ -59,7 +59,13 @@ class CertificateController extends Controller
     public function update(Request $request, string $id)
     {
         $certificate = Certificate::findOrFail($id);
-        $certificate->update($request->all());
+
+        $certificate->update([
+            "process" => $request->process,
+            "status" => $request->status,
+            "start" => $request->start,
+            "end" => $request->end,
+        ]);
 
         return response()->json(
             new CertificateResource($certificate)

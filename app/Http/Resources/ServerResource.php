@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Certificate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -30,6 +31,7 @@ class ServerResource extends JsonResource
             "county" => $this->county,
             "uf" => $this->uf,
             "complement" => $this->complement,
+            "certificates" => CertificateResource::collection($this->whenLoaded("certificatesServer")),
         ];
     }
 }

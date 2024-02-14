@@ -14,7 +14,7 @@ class ServerController extends Controller
      */
     public function index()
     {
-        $server = Server::all();
+        $server = Server::with('certificatesServer')->get();
         return response()->json(ServerResource::collection($server));
     }
 
@@ -23,7 +23,22 @@ class ServerController extends Controller
      */
     public function store(Request $request)
     {
-        $server = Server::create($request->all());
+        $server = Server::create([
+            "name"=> $request->name,
+            "cpf" => $request->cpf,
+            "cid" => $request->cid,
+            "registration"=> $request->registration,
+            "workload" => $request->workload,
+            "email" => $request->email,
+            "phone" => $request->phone,
+            "cep" => $request->cep,
+            "place" => $request->place,
+            "number" => $request->number,
+            "neighborhood" => $request->neighborhood,
+            "county" => $request->county,
+            "uf" => $request->uf,
+            "complement" => $request->complement,
+        ]);
 
         return response()->json(
             new ServerResource($server)

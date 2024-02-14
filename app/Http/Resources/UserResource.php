@@ -20,6 +20,7 @@ class UserResource extends JsonResource
             "cpf" => $this->cpf,
             "registration" => $this->registration,
             "email" => $this->email,
+            "certificates" => CertificateResource::collection($this->whenLoaded("certificates")),
         ];
     }
 }
