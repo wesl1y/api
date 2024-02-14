@@ -15,10 +15,11 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            "email" => "admin@gmail.com",
+            "name" => "admin2",     
+            "email" => "admin2@gmail.com",
+            "cpf" => "147.787.484-31",
+            "registration" => "447787711",
             "password" => Hash::make("12345"),
-            "name" => "admin",     
-
         ]);
     }
 }

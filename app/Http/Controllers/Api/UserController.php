@@ -17,6 +17,7 @@ class UserController extends Controller
     {
         $users = User::all();
         return response()->json(UserResource::collection($users));
+
     }
 
     /**
@@ -25,9 +26,12 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user= User::create([
+            "name" => $request->name,     
+            "cpf" => $request->cpf,
+            "registration" => $request->registration,
             "email" => $request->email,
             "password" => Hash::make($request->password),
-            "name" => $request->name,     
+            
         ]);
 
         return response()->json(
@@ -45,7 +49,7 @@ class UserController extends Controller
         return response()->json(
             new UserResource($user)
         );
-    }
+     }
 
     /**
      * Update the specified resource in storage.

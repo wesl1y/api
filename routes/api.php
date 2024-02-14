@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\CertificateController;
+use App\Http\Controllers\api\ServerController;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,9 +20,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post("/auth", [AuthController::class, "login"]);
+Route::apiResource("/certificate", CertificateController::class);
+Route::apiResource("/user", UserController::class);
+Route::apiResource("/server", ServerController::class);
 
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post("/logout", [AuthController::class, "logout"]);
-    Route::apiResource("/user", UserController::class);
 });

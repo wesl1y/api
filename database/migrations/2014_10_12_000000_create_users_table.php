@@ -13,13 +13,17 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->string('name', 255);
+            $table->string('email', 250)->unique();
+            $table->string('cpf', 250)->unique();
+            $table->integer('registration')->unique();
+            $table->string('password', 250);
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
+
+
     }
 
     /**
@@ -27,6 +31,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+
+
         Schema::dropIfExists('users');
     }
 };
