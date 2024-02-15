@@ -25,6 +25,6 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource("/certificate", CertificateController::class);
     Route::apiResource("/user", UserController::class);
     Route::apiResource("/server", ServerController::class);
-    Route::post("/logout", [AuthController::class, "logout"]);
     Route::post("/change-password", [AuthController::class, "changePassword"]);
+    Route::post("/logout", [AuthController::class, "logout"]);
 });

@@ -44,7 +44,7 @@ class AuthController extends Controller
     public function changePassword(Request $request){
         $request->validate([
             'current_password' => 'required',
-            'new_password' => 'required|string|min:8|confirmed'
+            'new_password' => 'required|string|confirmed'
         ]);
 
         $user = Auth::user();
