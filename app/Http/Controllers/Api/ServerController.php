@@ -28,7 +28,6 @@ class ServerController extends Controller
             "name"=> $request->name,
             "cpf" => $request->cpf,
             "cid" => $request->cid,
-            "registration"=> $request->registration,
             "workload" => $request->workload,
             "email" => $request->email,
             "phone" => $request->phone,
