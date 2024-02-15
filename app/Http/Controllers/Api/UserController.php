@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('certificates')->get();
+        $users = User::with('certificatesUser')->get();
         return response()->json(UserResource::collection($users));
 
     }
@@ -48,7 +48,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::with('certificatesUser')->findOrFail($id);
 
         return response()->json(
             new UserResource($user)

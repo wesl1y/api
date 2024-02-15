@@ -47,10 +47,11 @@ class CertificateController extends Controller
      */
     public function show(string $id)
     {
-        $certificate = Certificate::findOrFail($id);
-        return response()->json(
-            new CertificateResource($certificate)
-        );
+        $certificate = Certificate::with('user', 'server')->findOrFail($id);
+        
+        return response()->json([
+            new CertificateResource($certificate),
+        ]);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CertificateResource;
 use App\Http\Resources\ServerResource;
 use App\Models\Server;
 use Illuminate\Http\Request;
@@ -50,10 +51,10 @@ class ServerController extends Controller
      */
     public function show(string $id)
     {
-        $server = Server::findOrfail($id);
+        $server = Server::with('certificatesServer')->findOrFail($id);
 
         return response()->json(
-            new ServerResource($server)
+            new ServerResource($server),
         );
     }
 
@@ -64,7 +65,22 @@ class ServerController extends Controller
     {
         $server = Server::findOrFail($id);
 
-        $server->update($request->all());
+        $server->update([
+            "name"=> $request->name,
+            "cpf" => $request->cpf,
+            "cid" => $request->cid,
+            "registration"=> $request->registration,
+            "workload" => $request->workload,
+            "email" => $request->email,
+            "phone" => $request->phone,
+            "cep" => $request->cep,
+            "place" => $request->place,
+            "number" => $request->number,
+            "neighborhood" => $request->neighborhood,
+            "county" => $request->county,
+            "uf" => $request->uf,
+            "complement" => $request->complement,
+        ]);
 
         return response()->json(
             new ServerResource($server)

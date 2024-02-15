@@ -15,7 +15,6 @@ class Certificate extends Model
         'status',
         'start',
         'end',
-        'days_left',
         'user_id',
         'server_id'
     ];

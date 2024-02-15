@@ -21,12 +21,6 @@ return new class extends Migration
             $table->unsignedBigInteger('server_id');
             $table->foreign('server_id')->references('id')->on('servers');
         });
-
-        //Adding a relationship with servers
-        Schema::table('servers', function(Blueprint $table){
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-        });
     }
 
     /**
@@ -34,6 +28,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+
         //remove a relationship with certificates
         Schema::table('certificates', function (Blueprint $table) {
             $table->dropForeign(['user_id']); 
@@ -43,12 +38,6 @@ return new class extends Migration
         Schema::table('certificates', function (Blueprint $table) {
             $table->dropForeign(['server_id']); 
             $table->dropColumn('server_id');
-        });
-
-        //remove a relationship with servers
-        Schema::table('servers', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
-            $table->dropColumn('user_id');
         });
     }
 };
