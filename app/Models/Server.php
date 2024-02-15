@@ -13,7 +13,6 @@ class Server extends Model
         'name',
         'cpf',
         'cid',
-        'registration',
         'workload',
         'email',
         'phone',

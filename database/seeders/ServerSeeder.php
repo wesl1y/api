@@ -17,7 +17,6 @@ class ServerSeeder extends Seeder
             "name"=> "weslly",
             "cpf"=> "14778778430",
             "cid"=> "125429",
-            "registration"=> 12549,
             "workload"=> 30,
             "place"=> "Maceio",
             "uf" => "AL"

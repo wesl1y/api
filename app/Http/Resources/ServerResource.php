@@ -20,7 +20,6 @@ class ServerResource extends JsonResource
             "name" => $this->name,
             "cpf" => $this->cpf,
             "cid" => $this->cid,
-            "registration" => $this->registration,
             "wordload" => $this->workload,
             "email" => $this->email,
             "phone" => $this->phone,
