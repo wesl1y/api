@@ -14,12 +14,12 @@ class CertificateSeeder extends Seeder
     public function run(): void
     {
         Certificate::create([
-            "process" => "14552095414",
+            "process" => "148875",
             "status" => "deferido",
-            "start" => "2024-02-10",
-            "end" => "2024-02-15",
+            "start" => "2024-02-18",
+            "end" => "2024-02-19",
             "user_id" => 1,
-            "server_id" => 1
+            "server_id" => 33144
         ]);
     }
 }

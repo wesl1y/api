@@ -18,8 +18,12 @@ return new class extends Migration
         });
 
         Schema::table('certificates', function (Blueprint $table){
-            $table->unsignedBigInteger('server_id');
-            $table->foreign('server_id')->references('id')->on('servers');
+            $table->Integer('server_id');
+            $table->foreign('server_id')->references('id')->on('servidores');
+        });
+
+        Schema::table('servidores_complementar', function (Blueprint $table){
+            $table->foreign('servidor_id')->references('id')->on('servidores');
         });
     }
 
@@ -38,6 +42,10 @@ return new class extends Migration
         Schema::table('certificates', function (Blueprint $table) {
             $table->dropForeign(['server_id']); 
             $table->dropColumn('server_id');
+        });
+
+        Schema::table('servidores_complementar', function (Blueprint $table){
+            $table->dropForeign(['servidor_id']);
         });
     }
 };

@@ -14,12 +14,18 @@ class ServerSeeder extends Seeder
     public function run(): void
     {
         Server::create([
-            "name"=> "weslly",
-            "cpf"=> "14778778430",
-            "cid"=> "125429",
-            "workload"=> 30,
-            "place"=> "Maceio",
-            "uf" => "AL"
+            "id" => "500031",
+            "nome" => "weslly",
+            "cpf" => "1234567",
+            "cid" => "1234567",
+            "rg" => "1234567",
+            "endereco" => '1234567',
+            "email" => '123467@gmail.com',
+            "telefone" => "1234657",
+            "matricula_1" => "1234567",
+            "carga_horaria_1" => 30,
+            "matricula_2" => "12345679",
+            "carga_horaria_2" => 30,
         ]);
     }
 }
