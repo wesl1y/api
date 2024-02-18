@@ -9,24 +9,27 @@ class Server extends Model
 {
     use HasFactory;
 
+    protected $table = "servidores";
     protected $fillable = [
-        'name',
+        'nome',
         'cpf',
         'cid',
-        'workload',
+        'rg',
+        'endereco',
         'email',
-        'phone',
-        'cep',
-        'place',
-        'number',
-        'neighborhood',
-        'county',
-        'uf',
-        'complement',
+        'telefone',
+        'matricula_1',
+        'carga_horaria_1',
+        'matricula_2',
+        'carga_horaria_2',
     ];
 
     public function certificatesServer(){
         return $this->hasMany(Certificate::class);
+    }
+
+    public function servidoresCompletar(){
+        return $this->hasMany(ServidoresCompletar::class,'servidor_id');
     }
     
 }
