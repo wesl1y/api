@@ -17,20 +17,20 @@ class ServerResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "name" => $this->name,
+            "nome" => $this->nome,
             "cpf" => $this->cpf,
             "cid" => $this->cid,
-            "wordload" => $this->workload,
+            "rg" => $this->rg,
+            "endereco" => $this->endereco,
             "email" => $this->email,
-            "phone" => $this->phone,
-            "cep" => $this->cep,
-            "place" => $this->place,
-            "number" => $this->number,
-            "neighborhood" => $this->neighborhood,
-            "county" => $this->county,
-            "uf" => $this->uf,
-            "complement" => $this->complement,
+            "telefone" => $this->telefone,
+            "matricula_1" => $this->matricula_1,
+            "carga_horaria_1" => $this->carga_horaria_1,
+            "matricula_2" => $this->matricula_2,
+            "carga_horaria_2" => $this->carga_horaria_2,
+            "lotacao" => ServidoresCompletarResource::collection($this->whenLoaded("servidoresCompletar")),
             "certificates" => CertificateResource::collection($this->whenLoaded("certificatesServer")),
+
         ];
     }
 }

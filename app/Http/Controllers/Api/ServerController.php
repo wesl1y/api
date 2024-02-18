@@ -13,11 +13,28 @@ class ServerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $server = Server::with('certificatesServer')->get();
+        $gere = $request->query("gee");
+        $cargo = $request->query("cargo");
+        $funcao = $request->query("funcao");
+
+        $query = Server::query();
+
+        if ($gere) {
+            $query->whereHas('servidoresCompletar', fn($query) => $query->where('gee', $gere));
+        }
+        if ($cargo) {
+            $query->whereHas('servidoresCompletar', fn($query) => $query->where('cargo', $cargo));
+        }
+        if ($funcao) {
+            $query->whereHas('servidoresCompletar', fn($query) => $query->where('funcao', $funcao));
+        }
+        
+        $server = $query->with('certificatesServer', 'servidoresCompletar')->get();
         return response()->json(ServerResource::collection($server));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -25,19 +42,17 @@ class ServerController extends Controller
     public function store(Request $request)
     {
         $server = Server::create([
-            "name"=> $request->name,
+            "nome"=> $request->nome,
             "cpf" => $request->cpf,
+            "rg" => $request->rg,
             "cid" => $request->cid,
-            "workload" => $request->workload,
+            "endereco" => $request->endereco,
             "email" => $request->email,
-            "phone" => $request->phone,
-            "cep" => $request->cep,
-            "place" => $request->place,
-            "number" => $request->number,
-            "neighborhood" => $request->neighborhood,
-            "county" => $request->county,
-            "uf" => $request->uf,
-            "complement" => $request->complement,
+            "telefone" => $request->telefone,
+            "matricula_1" => $request->matricula_1,
+            "carga_horaria_1" => $request->carga_horaria_1,
+            "matricula_2" => $request->matricula_2,
+            "carga_horaria_2" => $request->carga_horaria_2,
         ]);
 
         return response()->json(
@@ -50,7 +65,7 @@ class ServerController extends Controller
      */
     public function show(string $id)
     {
-        $server = Server::with('certificatesServer')->findOrFail($id);
+        $server = Server::with('certificatesServer', 'servidoresCompletar')->findOrFail($id);
 
         return response()->json(
             new ServerResource($server),
@@ -65,20 +80,17 @@ class ServerController extends Controller
         $server = Server::findOrFail($id);
 
         $server->update([
-            "name"=> $request->name,
+            "nome"=> $request->nome,
             "cpf" => $request->cpf,
+            "rg" => $request->rg,
             "cid" => $request->cid,
-            "registration"=> $request->registration,
-            "workload" => $request->workload,
+            "endereco" => $request->endereco,
             "email" => $request->email,
-            "phone" => $request->phone,
-            "cep" => $request->cep,
-            "place" => $request->place,
-            "number" => $request->number,
-            "neighborhood" => $request->neighborhood,
-            "county" => $request->county,
-            "uf" => $request->uf,
-            "complement" => $request->complement,
+            "telefone" => $request->telefone,
+            "matricula_1" => $request->matricula_1,
+            "carga_horaria_1" => $request->carga_horaria_1,
+            "matricula_2" => $request->matricula_2,
+            "carga_horaria_2" => $request->carga_horaria_2,
         ]);
 
         return response()->json(

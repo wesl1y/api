@@ -17,7 +17,6 @@ class UserController extends Controller
     {
         $users = User::with('certificatesUser')->get();
         return response()->json(UserResource::collection($users));
-
     }
 
     /**
